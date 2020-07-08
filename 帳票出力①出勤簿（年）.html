@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- import vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- import iView -->
+    <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
+
+    <style>
+      /* ------------------         style   start    -------------------- */
+      *
+      {
+        -webkit-text-size-adjust: none;
+        /* font-family: "Meiryo", "メイリオ", "Hiragino Kaku Gothic Pro", "Osaka","MS PGothic", "Proxima Nova", "Helvetica Neue", "Roboto", Helvetica,Arial, sans-serif; */
+      font-family: -apple-system,BlinkMacSystemFont,Yu Gothic Medium,"\6E38\30B4\30B7\30C3\30AF Medium",YuGothic,"\6E38\30B4\30B7\30C3\30AF\4F53",Noto Sans Japanese,"\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3","\30E1\30A4\30EA\30AA",Hiragino Kaku Gothic ProN,Osaka,"sans-serif";
+
+      }
+      .a4Paper {
+        width: 3308px;  
+
+      }
+
+
+      /* ------------------   01  text 出勤薄  （2020年4月 ～ 2021年3月）-------------------- */
+      .bigTitle {
+        margin-bottom: 60px;
+        text-align: center;
+        font-size: 82px;
+        color: #261c6a;
+        font-weight: bold;
+
+      }
+      /* ------------------   02  text 印刷日期   -------------------- */
+      .tip {
+        margin-left: 2721px;
+        margin-top: -80px;
+        font-size: 32px;
+      }
+      /* ------------------   line03  并列的两个TABLE  -------------------- */
+      /* 让两个表并列在一起 */
+      .parent,.father {
+        display: flex;
+        overflow: hidden;
+      }
+      /*         ------------------        table01          ------------------  */
+      .table01 {
+        width: 1450px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 0px;
+        font-size: 40px;
+        border: 1px solid #4e4e4e;
+        text-align: center;
+      }
+      .date2{
+  background-color: #ff6600;
+  color: #ffffff;
+  font-weight: 900;
+  border: 2px solid  #eee0d8;
+
+}
+.date3{
+  border: 1px solid #4e4e4e;
+  }
+     
+     
+      /*         ------------------   table02    摘要------------------  */
+      .table02 {
+        /* text-align: left; */
+        margin-left: 103px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 10px;
+        font-size: 40px;
+      }
+      .message-td {
+        border: solid 1px #4e4e4e;
+        /* 接下来的4行，实现：在表格中，文本太长，换行 */
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        max-width: 800px;
+      }
+      .message-span {
+        display: inline-block;
+        /* height: 50px; */
+      }
+
+      /* *****************************************    接下来是Table 03           */
+      .table03 {        
+        width: 2640px; /*   2640  */
+        margin-top: 153px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        font-size: 22px;
+        position: absolute;
+        right: -162px;
+        /* right: -109px; */
+        /* top: 681px; */
+      }
+      .table03-title {
+        border: 2px solid rgb(189, 189, 189);
+        color: #261c6a;
+        background-color: #f5f5fa;
+
+      }
+      .month-span {
+        display: inline-block;
+        text-align: center;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+      .month-td {
+        border: 1px solid rgb(189, 189, 189);
+      }
+      .month-tdSP {
+        text-align: center;
+        border: 1px solid rgb(189, 189, 189);
+        font-size: 36px;
+      }
+
+
+      /* 两条新增的分割线   01   父级与子级的分割线 */
+      .divi-hour-and-day1::before {
+        content: "";
+        display: block;
+        position: absolute;
+        right: -2px;
+        top: 66px;
+        width: 419px;
+        height: 2px;
+        background: rgb(189, 189, 189);
+      }
+      
+      .total-border{
+        border: 1px solid rgb(189, 189, 189);
+        padding: 0px 30px 0px 30px;
+      }
+
+            /* *****************************************    接下来 Table 04      *****************************************      */
+            .table04{
+        /* 布局仅取决于表格宽度、列宽度、表格边框宽度、单元格间距，而与单元格的内容无关 */
+        table-layout: fixed;
+        border-collapse: collapse;
+        word-break: break-all; 
+        word-wrap: break-word;   
+      }
+      .table04 th:not(:first-child){
+        border: 1px solid rgb(189, 189, 189);
+      }
+      /* .first-line{
+        border: 1px solid #261c6a;
+      } */
+      .table04 td{
+        border: 1px solid rgb(189, 189, 189);
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        width: 90px;
+        border: 1px solid rgb(189, 189, 189);
+        padding-left: 6px;
+        padding-right: 5px;
+        white-space: pre-wrap; 
+      }
+.spec-line{
+  font-size: 24px;
+}
+.zebra-lineA,.zebra-lineB{
+  width: 12px;
+  height: 12px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+.divi-line1::before {
+        content: "";
+        display: block;
+        background: rgb(148, 148, 148);
+        position: relative;
+        top: -28px;
+        right: 3px;
+        width: 87px;
+        height: 2px;
+      } 
+.divi-line2::before {
+        content: "";
+        display: block;
+        background: rgb(209, 209, 209);
+        position: relative;
+        top: -28px;
+        right: 3px;
+        width: 87px;
+        height: 2px;
+} 
+.zebraColor01{
+  text-align: center;
+  background-color: #e3e3ee;
+  line-height: 30px;
+}
+
+.zebraColor02{
+  text-align: center;
+  background-color: #f5fafa;
+  line-height: 30px;
+
+}
+.rowTitle{
+  font-size: 32px;
+  color:  #261c6a;
+  font-weight: 800;
+}
+.date{
+  font-size: 28px;
+  font-weight: 900;
+  /* border: 1px solid #261c6a; */
+  color: #261c6a;
+
+}
+.spec-font{
+  font-weight: 1800;
+  font-size: 26px;
+  color: #261c6a;
+}
+
+
+      /* ------------------           style finished       -------------------- */
+    </style>
+  </head>
+
+  <body>
+    <!------------------         01  html    start         -------------------->
+    <div id="exportPDF" class="a4Paper">
+      <p class="bigTitle">{{ bigTitle }}</p>
+      <div class="tip">{{ printData }}</div>
+
+      <!-- 第一部分  人物基本msg-->
+      <div class="parent">
+          
+            <table class="table01" width="40%" height="0" cellspacing="0">
+              <tr>
+                <td colspan="2"  class="date2">氏名</td>
+                <td colspan="9"  class="date2">阿倍　上野</td>
+                
+              </tr>
+              <tr>
+                <td colspan="2"  class="date3">所属</td>
+                <td colspan="9"  class="date3">国民健康・栄養調査研究室</td>
+              </tr>
+              <tr>
+                <td colspan="2"  class="date3">職名</td>
+                <td colspan="9"  class="date3">研究員</td>
+                
+              </tr>
+              <tr>
+                <td colspan="2"  class="date3">種別</td>
+                <td colspan="9"  class="date3">健栄研_職員　フレックス</td>
+              </tr>
+              <tr>
+                <td colspan="2"  class="date3">年次休暇付与日数</td>
+                <td colspan="9"  class="date3">13</td>
+              </tr>
+              <tr>
+                <td colspan="2"  class="date3">年次休暇付与日</td>
+                <td colspan="9"  class="date3">2020/07/01</td>
+              </tr>
+            </table>
+
+        <!--                以上  01 具体信息                        -->
+
+        <table class="table02">
+          <tr v-for="value in dataList2" class="">
+            <td class="message-td">
+              <span class="message-span"> {{value.message}} </span>
+            </td>
+          </tr>
+        </table>
+        <!--                以上  02摘要                         -->
+      </div>
+      <!-- 第一部分  人物基本msg 结尾div-->
+
+
+  <!-- footer 合并单元格-->
+      <footer style="text-align: center;">
+        <table width="100%" height="90" cellspacing="0" class="table04">
+            <tr class="spec-line">
+                          <th colspan="32" ></th>
+                          <th colspan="1" class="spec-font" style="border: 1px solid #261c6a;">合計時間数</th>
+                          <th colspan="1"  class="spec-font" style="border: 1px solid #261c6a;">年休取得</th>
+                          <th colspan="1"  class="spec-font" style="border: 1px solid #261c6a;">年休残</th>
+                          <th colspan="1"  class="spec-font" style="border: 1px solid #261c6a;">病休</th>
+                          <th colspan="1"  class="spec-font" style="border: 1px solid #261c6a;">特休</th>
+                          <th colspan="1" class="spec-font" style="border: 1px solid #261c6a;">欠勤</th>
+            </tr>
+                    <tr class="first-line">
+                        <td colspan="1" ></td>
+                        <td colspan="1"  class="date">1</td>
+                        <td colspan="1"  class="date">2</td>
+                        <td colspan="1"  class="date">3</td>
+                        <td colspan="1"  class="date">4</td>
+                        <td colspan="1"  class="date">5</td>
+                        <td colspan="1"  class="date">6</td>
+                        <td colspan="1"  class="date">7</td>
+                        <td colspan="1"  class="date">8</td>
+                        <td colspan="1"  class="date">9</td>
+                        <td colspan="1"  class="date">10</td>
+                        <td colspan="1"  class="date">11</td>
+                        <td colspan="1"  class="date">12</td>
+                        <td colspan="1"  class="date">13</td>
+                        <td colspan="1"  class="date">14</td>
+                        <td colspan="1"  class="date">15</td>
+                        <td colspan="1"  class="date">16</td>
+                        <td colspan="1"  class="date">17</td>
+                        <td colspan="1"  class="date">18</td>
+                        <td colspan="1"  class="date">19</td>
+                        <td colspan="1"  class="date">20</td>
+                        <td colspan="1"  class="date">21</td>
+                        <td colspan="1"  class="date">22</td>
+                        <td colspan="1"  class="date">23</td>
+                        <td colspan="1"  class="date">24</td>
+                        <td colspan="1"  class="date">25</td>
+                        <td colspan="1"  class="date">26</td>
+                        <td colspan="1"  class="date">27</td>
+                        <td colspan="1"  class="date">28</td>
+                        <td colspan="1"  class="date">29</td>
+                        <td colspan="1"  class="date">30</td>
+                        <td colspan="1"  class="date">31</td>
+                        <td colspan="1" ></td>
+                        <th colspan="1" >日<br>時 <div class="divi-line2"></div> </th>
+                        <th colspan="1" >日<br>時<div class="divi-line2"></div>  </th>
+                        <th colspan="1" >日<br>時<div class="divi-line2"></div>  </th>
+                        <th colspan="1" >日<br>時<div class="divi-line2"></div>  </th>
+                        <th colspan="1" >日<br>時<div class="divi-line2"></div>  </th>
+                    </tr>
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">4月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">5月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">6月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">7月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">8月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">9月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">10月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">11月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">12月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">1月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+<tr class="zebra-lineA">
+  <td colspan="1"  class="zebraColor01 rowTitle">2月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1:00</td>
+  <td colspan="1"  >出勤 <br>4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor01">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor01">12<br>160    <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">10 <br>110   <div class="divi-line1"></div>  </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+  <th colspan="1"  class="zebraColor01">31.5 <br>110  <div class="divi-line1"></div> </th>
+</tr>
+
+
+<tr class="zebra-lineB">
+  <td colspan="1"  class="zebraColor02 rowTitle">3月</td>
+  <td colspan="1" >休出</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 <br>11:45 職免<br> 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td> 
+   <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <td colspan="1"  >出勤 11:45 職免 1: 00</td>
+  <td colspan="1"  >出勤 4:15 年(0.5)</td>
+  <td colspan="1"  >休法外</td>
+  <th colspan="1"  class="zebraColor02">210:00</th>
+      <!-- 加上  分割线    -->
+  <th colspan="1"  class="zebraColor02">12<br>160    <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">10 <br>110   <div class="divi-line2"></div>  </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+  <th colspan="1"  class="zebraColor02">31.5 <br>110  <div class="divi-line2"></div> </th>
+</tr>
+
+  
+                </table>
+              </footer>
+
+    </div>
+    <!-- 整个A4纸张 的结尾div-->
+    <!------------------           html     finished        -------------------->
+
+    <!-- ---------------     03   script  start   ---------------------------->
+    <script>
+      // 00    APP start
+      var demo = new Vue({
+        el: "#exportPDF", // 01    el finished
+        data: {
+          bigTitle: "出勤簿 （2020年4月 ～ 2021年3月）",
+          printData: "印刷日：" + new Date().toLocaleString(),
+          dataList: [
+            //  5   关于人的信息
+            {
+              c1: "氏名",
+              c2: "阿倍　上野",
+            },
+            {
+              c1: "所属",
+              c2: "新就業",
+            },
+            {
+              c1: "職名",
+              c2: "理事",
+            },
+            {
+              c1: "種別",
+              c2: "健栄研_非常勤務（日・時給）短時間",
+            },
+            {
+              c1: "年次休暇付与日数",
+              c2: "13",
+            },
+            {
+              c1: "年次休暇付与日",
+              c2: "2020年5月1日",
+            },
+          ],
+          dataList2: [
+            //  5   关于人的信息
+            {
+              message: "摘要",
+            },
+            {
+              message:
+                "日本語なんですけど。日本語なんですけど日本語なんですけど。日本語なんですけど本語なんですけど。本語なんですけど。。",
+            },
+          ],
+          
+        }, //02 data finished
+        methods: {
+          print(name) {
+            if (name === "氏名") return "title1";
+
+            if (name === "阿倍　上野") return "title2";
+            if (name === "年休取得") return "merge-tablecell";
+          },
+
+
+        }, //03 method finished
+        computed: {}, //04 computed finished
+        watch: {}, //05 watch finished
+      }); // 00    APP finished
+    </script>
+    <!-- ---------------      script  finished    --------------------------- -->
+  </body>
+</html>
