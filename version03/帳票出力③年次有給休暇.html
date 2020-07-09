@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- import vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- import iView -->
+    <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
+
+    <style>
+      * {
+      text-align: center;
+      font-family: -apple-system,BlinkMacSystemFont,Yu Gothic Medium,
+      "\6E38\30B4\30B7\30C3\30AF Medium",YuGothic,"\6E38\30B4\30B7\30C3\30AF\4F53",Noto Sans Japanese,
+      "\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3",
+      "\30E1\30A4\30EA\30AA",
+      Hiragino Kaku Gothic ProN,Osaka,"sans-serif";
+      }
+      .a4Paper {
+        width: 3308px; 
+      }
+
+      .bigTitle {
+        margin-top: 38px;
+        margin-bottom: 63px;
+        
+        font-size: 82px;
+        color: #261c6a;
+        font-weight: bold;
+      }
+      .secondTitle{
+        font-size: 42px;
+        color: #261c6a;
+        font-weight: 600;
+        margin-top: -68px;
+      }
+
+      .tip {
+        margin-left: 2721px;
+        margin-top: -80px;
+        margin-bottom: 20px;
+        font-size: 32px;
+      }
+
+
+      /* /////////////   head   /////////////// */
+
+      .head-table01 {
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 0px;
+        font-size: 40px;
+        border: 1px solid #4e4e4e;
+      }
+
+      .head-table01 td{
+        border: 1px solid #4e4e4e;
+      }
+
+      /* /////////////   body   /////////////// */
+      .body-table{
+        table-layout: fixed;
+        border-collapse: collapse;
+        word-wrap: break-word;   
+        margin-top: 50px;
+      }
+      .body-table th{
+        border: 1px solid #261c6a;
+      }
+      .body-table td{
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 90px;
+        padding-left: 6px;
+        padding-right: 5px;
+        white-space: pre-wrap; 
+        border: solid 1px #4e4e4e;
+      }
+
+      .body-table .spec-font{
+        font-size: 35px;
+        color: #261c6a;
+        font-weight: bold;
+      }
+
+
+
+      /* /////////////   bg   /////////////// */
+
+
+      .zebraColor01{
+        background-color: #e3e3ee;
+        line-height: 30px;
+      }
+
+      .zebraColor02{
+        background-color: #f5fafa;
+        line-height: 30px;
+      }
+
+      .zebraColor03{
+        background-color: #e8f7e9;
+        line-height: 30px;
+      }
+      .rowTitle{
+        font-size: 32px;
+        color:  #261c6a;
+        font-weight: 800;
+      }
+      .date{
+        font-size: 30px;
+      }
+      .date2{
+        background-color: #ff6600;
+        color: #ffffff;
+        font-weight: 900;
+      }
+      .date4{
+        background-color: #ff6600;
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 30px;
+        }
+
+      .date{
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .width01{
+        width: 500px;
+      }
+      .width02{
+        width: 800px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="exportPDF" class="a4Paper">
+      <p class="bigTitle">{{ bigTitle }}</p>
+      <p class="secondTitle">{{ secondTitle }}</p>      
+      <div class="tip">{{ printData }}</div>
+
+      <table class="head-table01" cellspacing="0">
+        <tr>
+          <td class="date2 width01" style="border-right: 1px solid #fff4eb;">氏名</td>
+          <td class="date2 width02">阿倍　上野</td>
+          <td class="date3 width01">所属</td>
+          <td class="date3 width02">国民健康・栄養調査研究室</td>
+        </tr>
+        <tr>
+          <td class="date3 width01">職名</td>
+          <td class="date3 width02">研究員</td>
+          <td class="date3 width01">種別</td>
+          <td class="date3 width02">健栄研_職員　フレックス</td>
+        </tr>
+      </table>    
+      </div>
+
+      <footer>
+        <table width="100%" height="90" cellspacing="0" class="body-table" >
+          <tr>
+            <th rowspan="2" colspan="3"  class="spec-font">年月日</th>
+            <th rowspan="2" colspan="4"  class="spec-font">内容</th>
+            <th rowspan="1" colspan="4"  class="spec-font">付与</th>
+            <th rowspan="1" colspan="4"  class="spec-font">取得</th>
+            <th rowspan="1" colspan="4"  class="spec-font">残</th>
+            <th rowspan="2" colspan="5"  class="spec-font">１日の換算時間</th>                        
+           </tr>
+        
+          <tr>                 
+            <th rowspan="1" colspan="2"  class="spec-font">日</th>
+            <th rowspan="1" colspan="2"  class="spec-font">時間</th>
+            <th rowspan="1" colspan="2"  class="spec-font">日</th>
+            <th rowspan="1" colspan="2"  class="spec-font">時間</th>  
+            <th rowspan="1" colspan="2"  class="spec-font">日</th>
+            <th rowspan="1" colspan="2"  class="spec-font">時間</th>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="3"  class="date">2019/07/01</td>
+            <td rowspan="1" colspan="4"  class="date">年次有給休暇</td>
+            <td rowspan="1" colspan="2"  class="date">10</td>
+            <td rowspan="1" colspan="2"  class="date"></td>
+            <td rowspan="1" colspan="2"  class="date"></td>
+            <td rowspan="1" colspan="2"  class="date"></td>
+            <td rowspan="1" colspan="2"  class="date">10</td>
+            <td rowspan="1" colspan="2"  class="date">0:00</td>
+            <td rowspan="1" colspan="5"  class="date">6:00</td>              
+          </tr>
+         </table>
+      </footer>
+    </div>
+
+
+    <script>
+
+      var demo = new Vue({
+        el: "#exportPDF", 
+        data: {
+          bigTitle: "年次有給休暇簿",
+          secondTitle: "2019/06/01~2020/05/31",
+          printData: "印刷日：" + new Date().toLocaleString(),
+          dataList2: [
+            {
+              message: "摘要",
+            },
+            {
+              message:
+                "日本語なんですけど。日本語なんですけど日本語なんですけど。日本語なんですけど本語なんですけど。本語なんですけど。。",
+            },
+          ],         
+        }, 
+      }); 
+    </script>
+  </body>
+</html>

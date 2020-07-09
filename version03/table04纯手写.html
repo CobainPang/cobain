@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- import vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- import iView -->
+    <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
+
+    <style>
+      /* ------------------         style   start    -------------------- */
+      *
+      {
+          -webkit-text-size-adjust: none;
+          font-family: "Meiryo", "メイリオ", "Hiragino Kaku Gothic Pro", "Osaka",
+          "MS PGothic", "Proxima Nova", "Helvetica Neue", "Roboto", Helvetica,
+          Arial, sans-serif;
+      }
+      .a4Paper {
+        /* A4纸的尺寸   3508 *   2480*/
+
+      /* 印刷时大小选 54%  */
+      width: 2480px; 
+      height: 3508px;
+      transform: rotate(90deg);
+      position:absolute;
+      left: -785px;          
+      top: -286px;        
+
+        /* font-family: sans-serif; */
+
+      }
+
+
+      /* ------------------   01  text 出勤薄  （2020年4月 ～ 2021年3月）-------------------- */
+      .bigTitle {
+        margin-bottom: 60px;
+        text-align: center;
+        font-size: 82px;
+        color: #261c6a;
+        font-weight: bold;
+
+      }
+      /* ------------------   02  text 印刷日期   -------------------- */
+      .tip {
+        margin-left: 2010px;
+        margin-top: -80px;
+        margin-bottom: 80px;
+        font-size: 32px;
+      }
+      /* ------------------   line03  并列的两个TABLE  -------------------- */
+      /* 让两个表并列在一起 */
+      .parent {
+        display: flex;
+        overflow: hidden;
+      }
+      /*         ------------------        table01          ------------------  */
+      .table01 {
+        /* margin-left: 2%; */
+        width: 1450px;
+        /* border-collapse: separate; */
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 0px;
+        font-size: 40px;
+      }
+      /* table01 ：c1  c2  两列的相同处*/
+      .inblock {
+        border: 1px solid #4e4e4e;
+        display: inline-block;
+        /* padding: 3px 0px 3px 0px; */
+      }
+      .c1 {
+        width: 35%;
+        padding-left: 10px;
+        text-align: center;
+      }
+      .c2 {
+        width: 63%;
+        /* border-right: 1px solid #74b2cf; */
+        padding-left: 10px;
+        margin-left: -14px;
+        text-align: center;
+      }
+      .title1 {
+        background-color: #ff6600;
+        color: white;
+        font-weight: 700;
+      }
+      .title2 {
+        background-color: #ff6600;
+        color: white;
+        border-left: 1px solid #dabdab;
+        font-weight: 700;
+      }
+      /*         ------------------   table02    摘要------------------  */
+      .table02 {
+        /* text-align: left; */
+        margin-left: 103px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 10px;
+        font-size: 40px;
+        /* border: solid 1px #ccc; */
+      }
+      .message-td {
+        border: solid 1px #4e4e4e;
+        /* 接下来的4行，实现：在表格中，文本太长，换行 */
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        max-width: 800px;
+        /* max-height: 1000px; */
+        /* height: 100px;    设置后 两个单元格都会变*/
+      }
+      .message-span {
+        display: inline-block;
+        /* height: 50px; */
+      }
+
+      /* *****************************************    接下来是Table 03           */
+      .table03 {
+        
+        width: 2640px; /*   2640  */
+        margin-top: 153px;
+        /* margin-left: 4%; */
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        font-size: 22px;
+      }
+      .table03-title {
+        border: 2px solid rgb(189, 189, 189);
+        /* font-size: 32px; */
+        color: #261c6a;
+        /* background-image: -webkit-linear-gradient(top, #f5f5fadc 1%, #ffffff); */
+        background-color: #f5f5fa;
+
+      }
+      .month-span {
+        display: inline-block;
+        text-align: center;
+        padding-left: 4px;
+        padding-right: 4px;
+        /* background-color: coral; */
+        /* padding: 4px 0px 4px 0px;  */
+        /*    上右下左 */
+      }
+      /* .month-spanSP{
+        } */
+      /* 左侧列第一列   */
+      .month-td {
+        border: 1px solid rgb(189, 189, 189);
+        /* width: 80px; */
+        /* 12列 content 是2160 */
+        /* text-align: center; */
+        /* padding:8px 0  5px ; */
+      }
+      .month-tdSP {
+        text-align: center;
+        border: 1px solid rgb(189, 189, 189);
+        /* width: 204px; */
+        /* max-width: 90px; */
+        /* padding-right: 50px; */
+        font-size: 36px;
+      }
+      /* .lineHeight {
+      } */
+
+      /* 两条新增的分割线   01   父级与子级的分割线 */
+      /* .divi-hour-and-day1::before {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 43px;
+        top: -62px;
+        width: 1px;
+        height: 128px;
+        background: rgb(189, 189, 189);
+      } */
+      /*    02 　　　「日」 ＆ 「时」  的分割线   ---很长很长的一根线 */
+      /* .divi-hour-and-day2::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 64px;
+        right: -2265px;
+        width: 2307px;
+        height: 1px;
+        background: rgb(156, 156, 156);
+      } */
+      /* 如果包含【法定】【所定】，那么缩小文字大小 */
+      .weekend {
+        font-size: 14px;
+      }
+      .weekendBG {
+        background-color: rgba(128, 255, 0, 0.37);
+        /* font-size: 20px; */
+      }
+
+      .total-border{
+        border: 1px solid rgb(189, 189, 189);
+        padding: 0px 30px 0px 30px;
+      }
+      .table04{
+        position: absolute;
+        float: left;
+        top: 676px;
+        left: 2102px;
+        font-size: 37px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        
+      }
+
+      .table04-td{
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        max-width: 80px;
+        border: 1px solid rgb(189, 189, 189);
+        padding-left: 6px;
+        padding-right: 5px;
+      }
+
+            /* *****************************************    接下来是Table 04      *****************************************      */
+
+
+      /* ------------------           style finished       -------------------- */
+    </style>
+  </head>
+
+  <body>
+    <!------------------         01  html    start         -------------------->
+    <div id="exportPDF" class="a4Paper">
+      <p class="bigTitle">{{ bigTitle }}</p>
+      <div class="tip">{{ printData }}</div>
+
+      <!-- 第一部分  人物基本msg-->
+      <div class="parent">
+        <table class="table01">
+          <!-- <tr class="line">
+          <th v-for="item in tableTh" >
+            {{item.title}}
+          </th>
+        </tr> -->
+          <!-- head    fin -->
+
+          <tr v-for="(value, i) of dataList" :key="i">
+            <td class="line">
+              <span class="inblock c1" :class="print(value.c1)"
+                >{{value.c1}}</span
+              >
+              <span class="inblock c2" :class="print(value.c2)"
+                >{{value.c2}}</span
+              >
+            </td>
+          </tr>
+        </table>
+        <!--                以上  01 具体信息                        -->
+
+        <table class="table02">
+          <tr v-for="value in dataList2" class="">
+            <td class="message-td">
+              <span class="message-span"> {{value.message}} </span>
+            </td>
+          </tr>
+        </table>
+        <!--                以上  02摘要                         -->
+      </div>
+      <!-- 第一部分  人物基本msg 结尾div-->
+
+      <section class="father">
+        <!-- section  是第二部分 月份统计的table  -->
+        <table class="table03" cellSpacing=0 cellPadding=0>
+          <tr>
+            <th v-for="item in tableTh03" class="table03-title" >
+              <span style="white-space: pre-line;">
+              {{item.title}}
+              </span>
+            </th>
+          </tr>
+          <!-- table03 表格头部    fin -->
+
+          <tr v-for="(value,x) in dataList3" :key="x">
+            <!-- 记住这里写了循环    -->
+            <!-- <td class="month-tdSP" style="position: relative;">
+              <span class="month-spanSP" :class="print3(value.m0)">
+                {{value.m0}}
+              </span> -->
+              <!-- 加上   日/时     -->
+              <!-- <div
+                style="position: absolute; top: -1px; left: 179px;"
+                v-if="print2(value.m0)"
+                class="divi-hour-and-day2"
+              >
+                日
+              </div>
+              <div
+                class="divi-hour-and-day1"
+                style="position: absolute; top: 62px; left: 179px;"
+                v-if="print2(value.m0)"
+              >
+                時
+              </div> -->
+            <!-- </td> -->
+
+           
+              <!-- style="white-space: pre-wrap;"   接收数据里面的\n换行指令   这里我全部删除了-->
+              <td class="month-td">
+                <span class="month-span" >
+                  {{value.m0}}
+                </span>
+            </td>
+
+            <td class="month-td" :class="print4(value.m1)">
+              <span class="month-span" :class="print3(value.m1)">
+                {{value.m1}}
+              </span>
+            </td>
+
+            <td class="month-td" :class="print4(value.m2)">
+              <span class="month-span" :class="print3(value.m2)">
+                {{value.m2}}
+              </span>
+            </td>
+
+            <td class="month-td" :class="print4(value.m3)">
+              <span class="month-span" :class="print3(value.m3)">
+                {{value.m3}}
+              </span>
+            </td>
+
+            <td class="month-td"  :class="print4(value.m4)">
+              <span class="month-span" :class="print3(value.m4)">
+                {{value.m4}}
+              </span>
+            </td>
+
+            <td class="month-td"  :class="print4(value.m5)">
+              <span class="month-span" :class="print3(value.m5)">
+                {{value.m5}}
+              </span>
+            </td>
+
+            <td class="month-td" :class="print4(value.m6)">
+              <span class="month-span" :class="print3(value.m6)">
+                {{value.m6}}
+              </span>
+            </td>
+
+            <td class="month-td" :class="print4(value.m7)">
+              <span class="month-span" :class="print3(value.m7)">
+                {{value.m7}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m8)">
+              <span class="month-span" :class="print3(value.m8)">
+                {{value.m8}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m9)">
+              <span class="month-span" :class="print3(value.m9)">
+                {{value.m9}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m10)">
+              <span class="month-span" :class="print3(value.m10)">
+                {{value.m10}}
+              </span>
+            </td>
+            
+            <td class="month-td" :class="print4(value.m11)">
+              <span class="month-span" :class="print3(value.m11)">
+                {{value.m11}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m12)">
+              <span class="month-span" :class="print3(value.m12)">
+                {{value.m12}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m13)">
+              <span class="month-span" :class="print3(value.m13)">
+                {{value.m13}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m14)">
+              <span class="month-span" :class="print3(value.m14)">
+                {{value.m14}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m15)">
+              <span class="month-span" :class="print3(value.m15)">
+                {{value.m15}}
+              </span>
+            </td>
+            
+            <td class="month-td" :class="print4(value.m16)">
+              <span class="month-span" :class="print3(value.m16)">
+                {{value.m16}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m17)">
+              <span class="month-span" :class="print3(value.m17)">
+                {{value.m17}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m18)">
+              <span class="month-span" :class="print3(value.m18)">
+                {{value.m18}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m19)">
+              <span class="month-span" :class="print3(value.m19)">
+                {{value.m19}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m20)">
+              <span class="month-span" :class="print3(value.m20)">
+                {{value.m20}}
+              </span>
+            </td>
+            
+            <td class="month-td" :class="print4(value.m21)">
+              <span class="month-span" :class="print3(value.m21)">
+                {{value.m21}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m22)">
+              <span class="month-span" :class="print3(value.m22)">
+                {{value.m22}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m23)">
+              <span class="month-span" :class="print3(value.m23)">
+                {{value.m23}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m24)">
+              <span class="month-span" :class="print3(value.m24)">
+                {{value.m24}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m25)">
+              <span class="month-span" :class="print3(value.m25)">
+                {{value.m25}}
+              </span>
+            </td>
+            
+            <td class="month-td":class="print4(value.m26)">
+              <span class="month-span" :class="print3(value.m26)">
+                {{value.m26}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m27)">
+              <span class="month-span" :class="print3(value.m27)">
+                {{value.m27}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m28)">
+              <span class="month-span" :class="print3(value.m28)">
+                {{value.m28}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m29)">
+              <span class="month-span" :class="print3(value.m29)">
+                {{value.m29}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m30)">
+              <span class="month-span" :class="print3(value.m30)">
+                {{value.m30}}
+              </span>
+            </td>
+            <td class="month-td" :class="print4(value.m31)">
+              <span class="month-span" :class="print3(value.m31)">{{value.m31}}</span>
+            </td>
+
+<!-- 接下来是合计的部分 -->
+            
+<td  style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span">{{value.m32}}</span>
+</td>
+<td style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span" >{{value.m33}}</span>
+</td>
+<td  style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span" >{{value.m34}}</span>
+</td>
+<td  style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span" >{{value.m35}}</span>
+</td>
+<td  style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span" >{{value.m36}}</span>
+</td>
+<td  style="white-space: pre-wrap;" class="total-border">
+  <span class="month-span" >{{value.m37}}</span>
+</td>
+
+
+
+
+
+          </tr><!-- 表格03的结束 -->
+        </table>
+
+      </section>
+
+
+        <table class="table04">
+          <tr>
+                <td class="table04-td">合計時間数</td>
+                <td class="table04-td">年休取得</td>
+                <td class="table04-td">年休残</td>
+                <td class="table04-td">病休</td>
+                <td class="table04-td">特休</td>
+                <td class="table04-td">欠勤</td>             
+          </tr>
+
+
+
+        </table>
+
+      <!-- section  是第二部分 月份统计的table   完结  -->
+
+
+    </div>
+    <!-- 整个A4纸张 的结尾div-->
+    <!------------------           html     finished        -------------------->
+
+    <!-- ---------------     03   script  start   ---------------------------->
+    <script>
+      // 00    APP start
+      var demo = new Vue({
+        el: "#exportPDF", // 01    el finished
+        data: {
+          bigTitle: "出勤簿 （2020年4月 ～ 2021年3月）",
+          printData: "印刷日：" + new Date().toLocaleString(),
+          dataList: [
+            //  5   关于人的信息
+            {
+              c1: "氏名",
+              c2: "阿倍　上野",
+            },
+            {
+              c1: "所属",
+              c2: "新就業",
+            },
+            {
+              c1: "職名",
+              c2: "理事",
+            },
+            {
+              c1: "種別",
+              c2: "健栄研_非常勤務（日・時給）短時間",
+            },
+            {
+              c1: "年次休暇付与日数",
+              c2: "13",
+            },
+            {
+              c1: "年次休暇付与日",
+              c2: "2020年5月1日",
+            },
+          ],
+          dataList2: [
+            //  5   关于人的信息
+            {
+              message: "摘要",
+            },
+            {
+              message:
+                "日本語なんですけど。日本語なんですけど日本語なんですけど。日本語なんですけど本語なんですけど。本語なんですけど。。",
+            },
+          ],
+          // th是表格的title
+          tableTh03: [
+            //表头
+            // {
+            //   title: "00   ", //还可以增加其他描述，比如width
+            //   align: "left",
+            //   width:"11rem",
+            // },
+            {
+              title: "  ", //还可以增加其他描述，比如width
+              align: "center",
+              // width: "11rem",
+            },
+            {
+              title: "1", //
+              align: "center",
+              // width: "11rem",
+            },
+            {
+              title: "2",
+              align: "center",
+            },
+            {
+              title: "3",
+              align: "center",
+            },
+            {
+              title: "4",
+              align: "center",
+            },
+            {
+              title: "5",
+              align: "center",
+            },
+            {
+              title: "6",
+              align: "center",
+            },
+            {
+              title: "7",
+              align: "center",
+            },
+            {
+              title: "8",
+              align: "center",
+            },
+            {
+              title: "9",
+              align: "center",
+            },
+            {
+              title: "10",
+              align: "center",
+            },
+            {
+              title: "11",
+              align: "center",
+            },
+            {
+              title: "12",
+              align: "center",
+            },
+            {
+              title: "13",
+              align: "center",
+            },
+            {
+              title: "14",
+              align: "center",
+            },
+            {
+              title: "15",
+              align: "center",
+            },
+            {
+              title: "16",
+              align: "center",
+            },
+            {
+              title: "17",
+              align: "center",
+            },
+            {
+              title: "18",
+              align: "center",
+            },
+            {
+              title: "19",
+              align: "center",
+            },
+            {
+              title: "20",
+              align: "center",
+            },
+            {
+              title: "21",
+              align: "center",
+            },
+            {
+              title: "22",
+              align: "center",
+            },
+            {
+              title: "23",
+              align: "center",
+            },
+            {
+              title: "24",
+              align: "center",
+            },
+            {
+              title: "25",
+              align: "center",
+            },
+            {
+              title: "26",
+              align: "center",
+            },
+            {
+              title: "27",
+              align: "center",
+            },
+            {
+              title: "28",
+              align: "center",
+            },
+            {
+              title: "29",
+              align: "center",
+            },
+            {
+              title: "30",
+              align: "center",
+            },
+            {
+              title: "31",
+              align: "center",
+            },
+            {
+              title:  "",
+              align: "center",
+            },
+            {
+              title:  "日\n時",
+              align: "center",
+            },
+            {
+              title:  "日\n時",
+              align: "center",
+            },
+            {
+              title:  "日\n時",
+              align: "center",
+            },
+            {
+              title:  "日\n時",
+              align: "center",
+            },
+            {
+              title:  "日\n時",
+              align: "center",
+            },
+          ],
+          tableTh04: [
+            //表头
+            // {
+            //   title: "00   ", //还可以增加其他描述，比如width
+            //   align: "left",
+            //   width:"11rem",
+            // },
+            {
+              title: " 合计时间数 ", //还可以增加其他描述，比如width
+              align: "center",
+              // width: "11rem",
+            },
+            {
+              title: "年休取得", //这是左上角00的一个空格单元格
+              align: "center",
+              // width: "11rem",
+            },
+            {
+              title: "年休残", //这是左上角00的一个空格单元格
+              align: "center",
+              // width: "11rem",
+            },
+            {
+              title: "病休",
+              align: "center",
+            },
+            {
+              title: "特休",
+              align: "center",
+            },
+            {
+              title: "欠勤",
+              align: "center",
+            },
+          ],
+          dataList3: [
+            //  5   关于人的信息
+            {
+              // 表格第一行
+              m0: "4月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"444",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第二行
+              m0: "5月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"555",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第3行
+              m0: "6月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"666",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第4行
+              m0: "7月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"777",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第5行
+              m0: "8月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"888",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第6行
+              m0: "9月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"999",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第7行
+              m0: "10月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"10",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第8行
+              m0: "11月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"11",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第9行
+              m0: "12月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"12",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第10行
+              m0: "1月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"1111",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第11行
+              m0: "2月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"222",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+            {
+              // 表格第12行
+              m0: "3月",
+              m1: "8:00",
+              m2: "8:45",
+              m3: "8:30",
+              m4: "所定休（土）",
+              m5: "法定休（日）",
+              m6: "8:00",
+              m7: "8:00",
+              m8: "8:00",
+              m9: "8:00",
+              m10: "8:30",
+              m11: "所定休（土）",
+              m12: "法定休（日）",
+              m13: "8:00",
+              m14: "8:00",
+              m15: "8:00",
+              m16: "8:00",
+              m17: "8:30",
+              m18: "所定休（土）",
+              m19: "法定休（日）",
+              m20: "8:00",
+              m21: "8:00",
+              m22: "8:00",
+              m23: "8:00",
+              m24: "8:30",
+              m25: "所定休（土）",
+              m26: "法定休（日）",
+              m27: "8:00",
+              m28: "8:00",
+              m29: "8:00",
+              m30: "8:00",
+              m31: "8:30",
+              m32:"333",
+              m33:"0\n0",
+              m34:"0\n0",
+              m35:"0\n0",
+              m36:"0\n0",
+              m37:"0\n0",
+            },
+          ],
+          
+        }, //02 data finished
+        methods: {
+          print(name) {
+            if (name === "氏名") return "title1";
+
+            if (name === "阿倍　上野") return "title2";
+            if (name === "年休取得") return "merge-tablecell";
+          },
+          print2(cellName) {
+            if (
+              cellName === "年休取得" ||
+              cellName === "年休残" ||
+              cellName === "病休" ||
+              cellName === "特休" ||
+              cellName === "欠勤"
+            )
+              return true;
+            else return false;
+          },
+          print3(name) {
+            // if (name.indexOf("法定") > -1　 ||  name.indexOf("所定") > -1 )   return "weekend";    这里写的不对
+            if (name.indexOf("法定") > -1) return "weekend";
+            if (name.indexOf("所定") > -1) return "weekend";
+            else return false;
+          },
+          print4(content) {
+            if (content.indexOf("法定") > -1) return "weekendBG";
+            if (content.indexOf("所定") > -1) return "weekendBG";
+            else return false;
+          },
+        }, //03 method finished
+        computed: {}, //04 computed finished
+        watch: {}, //05 watch finished
+      }); // 00    APP finished
+    </script>
+    <!-- ---------------      script  finished    --------------------------- -->
+  </body>
+</html>

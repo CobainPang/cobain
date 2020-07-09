@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- import vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- import iView -->
+    <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
+
+
+    <style>
+      * {
+        text-align: center;
+        -webkit-text-size-adjust: none;
+        font-family: -apple-system,BlinkMacSystemFont,Yu Gothic Medium,
+        "\6E38\30B4\30B7\30C3\30AF Medium",YuGothic,"\6E38\30B4\30B7\30C3\30AF\4F53",
+        Noto Sans Japanese,"\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3","\30E1\30A4\30EA\30AA",
+        Hiragino Kaku Gothic ProN,Osaka,"sans-serif";
+      }
+      .a4Paper {
+        width: 3308px; 
+      }
+      .bigTitle {
+        margin-top: 38px;
+        margin-bottom: 63px;
+        font-size: 82px;
+        color: #261c6a;
+        font-weight: bold;
+      }
+      .tip {
+        margin-left: 2721px;
+        margin-top: -80px;
+        margin-bottom: 20px;
+        font-size: 32px;
+      }
+      .table01 {
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 0px;
+        font-size: 40px;
+        border: 1px solid #4e4e4e;
+      }
+      .table01 td{
+        border: 1px solid #fff4eb;
+      }
+      .table02 {
+        /* text-align: left; */
+        margin-left: 103px;
+        border-collapse: collapse;
+        border-spacing: 0px 0px;
+        margin-top: 10px;
+        font-size: 40px;
+      }
+      .message-td {
+        border: solid 1px #4e4e4e;
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        max-width: 800px;
+      }
+      .message-span {
+        display: inline-block;
+      }
+      .table04{
+        table-layout: fixed;
+        border-collapse: collapse;
+        word-break: break-all; 
+        word-wrap: break-word;   
+        margin-top: 50px;
+      }
+      .table04 th{
+        border: 1px solid #261c6a;
+      }
+      .table04 td{
+        word-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+        width: 90px;
+        border: solid 1px #4e4e4e;
+        padding-left: 6px;
+        padding-right: 5px;
+        white-space: pre-wrap; 
+      }
+
+      .zebraColor01{
+        background-color: #e3e3ee;
+        line-height: 30px;
+      }
+
+      .zebraColor02{
+        background-color: #f5fafa;
+        line-height: 30px;
+      }
+
+      .zebraColor03{
+        background-color: #e8f7e9;
+        line-height: 30px;
+      }
+      .rowTitle{
+        font-size: 32px;
+        color:  #261c6a;
+        font-weight: 800;
+      }
+      .date{
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 28px;
+      }
+
+      .date2{
+        background-color: #ff6600;
+        color: #ffffff;
+        font-weight: 900;
+        width: 561px;
+      }
+      .date3{
+        color:  #261c6a;
+        font-weight: 900;
+        width: 561px;
+        font-size: 30px;
+      }
+      .date4{
+        background-color: #ff6600;
+        color: #ffffff;
+        font-weight: 900;
+        width: 1200px;
+        }
+      .spec-font{
+        font-size: 30px;
+        color: #261c6a;
+        font-weight: bold;
+      }
+
+      tr.total-border td{
+        border: 1px solid #261c6a;
+      }
+
+      tr.total-total-border td{
+        border: 1px solid #e9e9e9;
+        background-color: #ff6600;
+        color: azure;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="exportPDF" class="a4Paper">
+      <p class="bigTitle">{{ bigTitle }}</p>
+      <div class="tip">{{ printData }}</div>
+      <table class="table01" >
+        <tr>
+          <td   class="date2">対象組織</td>
+          <td   class="date4">開発振興課</td>         
+        </tr>   
+      </table>
+    </div>
+
+      <footer>
+        <table width="100%" height="90" cellspacing="0" class="table04">
+            <tr class="spec-line">
+              <th rowspan="1" colspan="4"  class="spec-font">氏名</th>
+              <th rowspan="1" colspan="4"  class="spec-font">職名</th>
+              <th rowspan="1" colspan="4"  class="spec-font">種別</th>
+              <th rowspan="1" colspan="1" class="spec-font">4月</th>
+              <th rowspan="1" colspan="1" class="spec-font">5月</th>
+              <th rowspan="1" colspan="1" class="spec-font">6月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">7月</th>
+              <th rowspan="1" colspan="1" class="spec-font">8月</th>
+              <th rowspan="1" colspan="1" class="spec-font">9月</th>
+              <th rowspan="1" colspan="1" class="spec-font">10月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">11月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">12月</th>
+              <th rowspan="1" colspan="1" class="spec-font">1月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">2月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">3月</th>
+              <th rowspan="1" colspan="1"  class="spec-font">合計</th>
+              <th rowspan="1" colspan="2"  class="spec-font">45超（回）</th>
+            </tr>
+  
+            <tr>
+              <td rowspan="1" colspan="4" class="date">松本 麻衣</td>
+              <td rowspan="1" colspan="4"  class="date">任期付研究員</td>
+              <td rowspan="1" colspan="4"  class="date">基盤研_職員 第１種</td>
+              <td rowspan="1" colspan="1" class="date">9:30</td>
+              <td rowspan="1" colspan="1" class="date">18:30</td>
+              <td rowspan="1" colspan="1"  class="date">10:16</td>
+              <td rowspan="1" colspan="1"  class="date">19:44</td>
+              <td rowspan="1" colspan="1"  class="date">10:30</td>
+              <td rowspan="1" colspan="1"  class="date">19:30</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="2" class="date">189:00</td>
+            </tr>
+
+            <tr>
+              <td rowspan="1" colspan="4" class="date">岡田 知佳</td>
+              <td rowspan="1" colspan="4"  class="date">研究員</td>
+              <td rowspan="1" colspan="4"  class="date">健栄研_職員 フ レックス</td>
+              <td rowspan="1" colspan="1" class="date">9:30</td>
+              <td rowspan="1" colspan="1" class="date">18:30</td>
+              <td rowspan="1" colspan="1"  class="date">10:16</td>
+              <td rowspan="1" colspan="1"  class="date">19:44</td>
+              <td rowspan="1" colspan="1"  class="date">10:30</td>
+              <td rowspan="1" colspan="1"  class="date">19:30</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="2" class="date">189:00</td>
+            </tr>
+
+            <tr>
+              <td rowspan="1" colspan="4" class="date">冨樫 恵美子</td>
+              <td rowspan="1" colspan="4" class="date">任期付研究員</td>
+              <td rowspan="1" colspan="4" class="date">健栄研_職員 フ レックス</td>
+              <td rowspan="1" colspan="1" class="date">9:30</td>
+              <td rowspan="1" colspan="1" class="date">18:30</td>
+              <td rowspan="1" colspan="1" class="date">10:16</td>
+              <td rowspan="1" colspan="1" class="date">19:44</td>
+              <td rowspan="1" colspan="1" class="date">10:30</td>
+              <td rowspan="1" colspan="1" class="date">19:30</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="1" class="date">189:00</td>
+              <td rowspan="1" colspan="2" class="date">189:00</td>
+            </tr>
+
+
+            <!-- 空一行 -->
+            <tr   style="height: 50px;border: none;">
+              <td rowspan="1" colspan="24" class="date" style="border: none;"></td>
+            </tr>
+
+
+            <tr class="total-border">
+              <td rowspan="1" colspan="12" class="date3">合計</td>
+              <td rowspan="1" colspan="1" class="date3" >9:30</td>
+              <td rowspan="1" colspan="1" class="date3" >18:30</td>
+              <td rowspan="1" colspan="1" class="date3" >10:16</td>
+              <td rowspan="1" colspan="1" class="date3" >19:44</td>
+              <td rowspan="1" colspan="1" class="date3" >10:30</td>
+              <td rowspan="1" colspan="1" class="date3" >19:30</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+            </tr>
+
+            <tr class="total-border">
+              <td rowspan="1" colspan="12" class="date3">45超(人)</td>
+              <td rowspan="1" colspan="1" class="date3">9:30</td>
+              <td rowspan="1" colspan="1" class="date3">18:30</td>
+              <td rowspan="1" colspan="1" class="date3">10:16</td>
+              <td rowspan="1" colspan="1" class="date3">19:44</td>
+              <td rowspan="1" colspan="1" class="date3">10:30</td>
+              <td rowspan="1" colspan="1" class="date3">19:30</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              </tr>
+
+             <!-- 空一行 -->
+            <tr   style="height: 50px;border: none;">
+              <td rowspan="1" colspan="24" class="date" style="border: none;"></td>
+            </tr>
+
+
+            <tr class="total-total-border">
+              <td rowspan="1" colspan="12" class="date3">総合計</td>
+              <td rowspan="1" colspan="1" class="date3" >9:30</td>
+              <td rowspan="1" colspan="1" class="date3" >18:30</td>
+              <td rowspan="1" colspan="1" class="date3" >10:16</td>
+              <td rowspan="1" colspan="1" class="date3" >19:44</td>
+              <td rowspan="1" colspan="1" class="date3" >10:30</td>
+              <td rowspan="1" colspan="1" class="date3" >19:30</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3" >189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+            </tr>
+
+            <tr class="total-total-border">
+              <td rowspan="1" colspan="12" class="date3">合計　45超(人)</td>
+              <td rowspan="1" colspan="1" class="date3">9:30</td>
+              <td rowspan="1" colspan="1" class="date3">18:30</td>
+              <td rowspan="1" colspan="1" class="date3">10:16</td>
+              <td rowspan="1" colspan="1" class="date3">19:44</td>
+              <td rowspan="1" colspan="1" class="date3">10:30</td>
+              <td rowspan="1" colspan="1" class="date3">19:30</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+              <td rowspan="1" colspan="1" class="date3">189:00</td>
+            </tr>
+          </table>
+        </footer>
+    </div>
+
+
+    <script>
+      var demo = new Vue({
+        el: "#exportPDF", 
+        data: {
+          bigTitle: "超過勤務実施状況リスト2019年度（法定内超勤を含む）",
+          printData: "印刷日：" + new Date().toLocaleString(),         
+        }, 
+        
+      }); 
+    </script>
+  </body>
+</html>
