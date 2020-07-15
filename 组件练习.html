@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- import vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- import iView -->
+    <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
+
+    <style>
+      *{
+        text-align: center;
+      }
+      #exportPDF{
+        width: 500px;
+      }
+
+    </style>
+  </head>
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <body>
+    <div id="exportPDF">
+
+      
+
+      <div >
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+
+      </div>
+
+
+    </div>    <!-- 结尾div-->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ---------------     03   script  start   ---------------------------->
+    <script>
+
+      // 新建一个名为button-counter的自定义组件
+      Vue.component('button-counter', {
+      data: function () {
+        return {
+          count: 0
+        }
+      },
+      template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+
+
+      // 00    APP start
+      var demo = new Vue({
+        el: "#exportPDF", // 01    el finished
+        data: {        
+          
+        },
+        computed: {}, 
+        methods: {},      
+      }); // 00    APP finished
+
+
+
+
+    </script>
+    <!-----------------      script  finished    ----------------------------->
+  </body>
+</html>
